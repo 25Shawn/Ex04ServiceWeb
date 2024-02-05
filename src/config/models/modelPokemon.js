@@ -37,17 +37,20 @@ class ListePokemon{
     }
 
     static RequeteListePokemons = (params) => {
-        return new Promise((resolve, reject) => {
+
+        return new Promise((resolve,reject) => {
+
             let requete = 'SELECT * FROM pokemon WHERE type_primaire = ? LIMIT 25 OFFSET ?';
 
             sql.query(requete,params, (erreur, resultat) => {
+
                 if (erreur) {
                     console.log("Erreur: ", erreur);
                     reject(erreur);
-                } else {
-                    console.log("Résultat de la requête pour la liste des pokemons de type", params[0], ":", resultat);
-                    resolve(resultat);
-                }
+                } 
+
+                console.log("Résultat de la requête pour la liste des pokemons de type", params[0], ":", resultat);
+                resolve(resultat);
             });
         });
     }
