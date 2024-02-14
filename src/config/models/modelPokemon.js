@@ -41,7 +41,6 @@ class ListePokemon{
         return new Promise((resolve,reject) => {
 
             let requete = 'SELECT * FROM pokemon WHERE type_primaire = ? LIMIT 25 OFFSET ?';
-
             sql.query(requete,params, (erreur, resultat) => {
 
                 if (erreur) {
@@ -66,7 +65,7 @@ class AjouterUnPokemon{
     static RequeteAjouterUnPokemon = (params) => {
         return new Promise((resolve, reject) => {
             const requete = `INSERT INTO pokemon (nom, type_primaire, type_secondaire,pv,attaque,defense) VALUES (?,?,?,0,0,0)`;
-
+            // NOTE : Ça veut dire qu'on ne peut pas spécifier les PV, l'attaque et la défense?
             sql.query(requete, params, (erreur, resultat) => {
                 if (erreur) {
                     console.log("Erreur: ", erreur);
@@ -91,7 +90,7 @@ class ModifierUnPokemon{
     static RequeteModifierUnPokemon = (params) => {
         return new Promise((resolve, reject) => {
             const requete = `UPDATE pokemon SET nom=?, type_primaire=?, type_secondaire=? WHERE id=?`;
-
+            // NOTE : Ça veut dire qu'on ne peut pas modifier les PV, l'attaque et la défense?
             sql.query(requete, params, (erreur, resultat) => {
                 if (erreur) {
                     console.log("Erreur: ", erreur);
